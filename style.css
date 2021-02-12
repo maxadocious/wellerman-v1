@@ -23,8 +23,10 @@ h2 {
   color: #282828;
 }
 
+a {
+  text-decoration: none;
+}
+
 .title {
-  position: absolute;
-  right: 225px;
-  bottom: 500px;
+  position: relative;
 }
