@@ -20,21 +20,23 @@
 <meta name="theme-color" content="#ffffff">
 
 </head>
-<body>
+<body class="story-page">
 
-<div class="outer-wrapper">
+  <div id="modal" class="close">Enter</div>
+
       <div class="wrapper">
         <section class="slide one">
           <article class="vh-center">
             <p class="center">I'm content!</p>
+            <a id="shanty-button" href="#">Sing!</a>
           </article>
         </section>
-        <section class="slide two">
+        <section id="v2" class="slide two">
           <article class="vh-center">
             <p class="center">I'm more content!</p>
           </article>
         </section>
-        <section class="slide three">
+        <section id="v3" class="slide three">
           <article class="vh-center">
             <p class="center">I'm better content!</p>
           </article>
@@ -75,14 +77,39 @@
           </article>
         </section>
       </div>
-    </div>
-
+<audio id="shanty">
+	    <source src="assets/Wellerman.mp3"></source>
+    </audio>
 <script
   	src="https://code.jquery.com/jquery-3.4.1.min.js"
   	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   	crossorigin="anonymous">
 </script>
-<script src="script.js">
+<script >
+  
+
+  var shanty = $("#shanty")[0];
+  $('#modal').click(function(){
+    $('#modal').css('display', 'none')
+    shanty.currentTime = 0;
+        shanty.play();
+  })
+
+
+    $("#shanty-button").click(function() {
+      if(shanty.paused != false){
+        shanty.currentTime = 0;
+        shanty.play();
+        setTimeout(nextVerse, 1000)
+      } else {
+        shanty.pause();
+      }
+    });
+        function nextVerse(){
+          var cls = $(this).closest(".section").next().offset().top;
+		      $("html, body").animate({scrollTop: cls}, "slow");
+        }
+
 </script>
 </body>
 </html>
